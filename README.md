@@ -1,6 +1,6 @@
-# DevTinder
+# MeetNewDevs
 
-DevTinder is a full-stack developer networking app inspired by swipe-based matchmaking, designed to help developers discover, connect, and collaborate with like-minded people.
+MeetNewDevs is a full-stack developer networking app inspired by swipe-based matchmaking, designed to help developers discover, connect, and collaborate with like-minded people.
 
 Users can create a profile, browse other developers, send connection requests, review incoming requests, chat in real time, and unlock premium features.
 
@@ -37,7 +37,7 @@ Users can create a profile, browse other developers, send connection requests, r
 
 ## App Overview
 
-DevTinder combines a social-first onboarding flow with developer-focused networking:
+MeetNewDevs combines a social-first onboarding flow with developer-focused networking:
 
 - A user signs up or logs in
 - A developer profile is created with personal details and skills
@@ -79,9 +79,12 @@ DevTinder/
 │   └── package-lock.json
 ├── frontend/
 │   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── Body.jsx
+│   │   │   ├── BrandLogo.jsx
 │   │   │   ├── Chat.jsx
 │   │   │   ├── Connections.jsx
 │   │   │   ├── EditProfile.jsx
@@ -91,13 +94,17 @@ DevTinder/
 │   │   │   ├── Premium.jsx
 │   │   │   ├── Profile.jsx
 │   │   │   ├── Requests.jsx
-│   │   │   ├── UserCard.jsx
-│   │   │   └── ...
+│   │   │   └── UserCard.jsx
 │   │   ├── utils/
 │   │   │   ├── __redux_store__/
+│   │   │   │   ├── appStore.js
+│   │   │   │   ├── connectionsSlice.js
+│   │   │   │   ├── feedSlice.js
+│   │   │   │   └── userSlice.js
 │   │   │   ├── constants.js
 │   │   │   └── socket.js
 │   │   ├── App.jsx
+│   │   ├── index.css
 │   │   └── main.jsx
 │   ├── index.html
 │   ├── package.json
@@ -108,40 +115,72 @@ DevTinder/
 │   ├── feed/
 │   ├── profile/
 │   ├── connections/
+│   ├── requests/
 │   ├── chat/
-│   └── requests/
+│   └── premium/
 ├── .gitignore
 ├── README.md
 └── .github/
 ```
 
+### Frontend component responsibilities
+
+- `App.jsx` declares the route tree and provides the Redux store.
+- `Body.jsx` is the shared authenticated layout: it renders the navigation, loads the signed-in profile, and hosts nested pages.
+- `Navbar.jsx` provides the app navigation, account menu, and logout action; `BrandLogo.jsx` is the shared wordmark and icon.
+- `Login.jsx` handles both login and signup views.
+- `Feed.jsx` loads the discovery feed and renders the first available `UserCard`; `UserCard.jsx` renders a profile and sends ignore/interested actions.
+- `Profile.jsx` hosts `EditProfile.jsx`, which edits the current user's profile.
+- `Connections.jsx` lists accepted connections and links to their chats.
+- `Requests.jsx` lists incoming connection requests and handles accept/reject actions.
+- `Chat.jsx` loads chat history and sends/receives live messages through Socket.IO.
+- `Premium.jsx` displays membership plans and starts the Razorpay checkout flow.
+
+### State management
+
+The Redux Toolkit store is created in `frontend/src/utils/__redux_store__/appStore.js` and provided to the app in `App.jsx`. Its top-level state is:
+
+| State key | Slice | Contents |
+| --- | --- | --- |
+| `user` | `userSlice.js` | Signed-in user profile, or `null`. |
+| `feed` | `feedSlice.js` | Feed user array, or `null` before it has been loaded. |
+| `connection` | `connectionsSlice.js` | `{ connections, requests }`; both collections start as `null` until loaded. Logout resets the slice. |
+
+Components read shared state with `useSelector` and update it with `useDispatch`. The user, feed, and connection slices own their respective add/remove/reset actions. API data is fetched with Axios using the shared `BACKEND_API` constant, and Socket.IO is used for live chat events. Short-lived UI state—such as form values, drag position, and chat input/messages—is held locally with React state hooks.
+
 ## Screenshots
 
-Use the folders below to store project screenshots as the app evolves:
-
 ```text
 screenshots/
-├── auth/          # login/signup screens
-├── feed/          # developer discovery feed
-├── profile/       # user profile and edit profile
-├── connections/   # accepted / connected profiles
-├── chat/          # messaging interface
-├── requests/      # incoming and outgoing requests
-└── premium/       # pricing / membership screens
+├── auth/
+│   ├── login.png
+│   └── signup.png
+├── feed/
+│   └── feed.png
+├── profile/
+│   └── edit-profile.png
+├── connections/
+│   └── connections.png
+├── requests/
+│   └── requests.png
+├── chat/
+│   └── messages.png
+└── premium/
+    └── plans.png
 ```
 
-Add screenshots here in the format:
+| Page / state | Route | Screenshot | Main components |
+| --- | --- | --- | --- |
+| Login | `/login` | `screenshots/auth/login.png` | `Login.jsx` |
+| Signup | `/login` (select **Create an account**) | `screenshots/auth/signup.png` | `Login.jsx` |
+| Developer feed | `/feed` | `screenshots/feed/feed.png` | `Feed.jsx`, `UserCard.jsx` |
+| Profile editing | `/profile` | `screenshots/profile/edit-profile.png` | `Profile.jsx`, `EditProfile.jsx` |
+| Connections | `/connections` | `screenshots/connections/connections.png` | `Connections.jsx` |
+| Connection requests | `/requests` | `screenshots/requests/requests.png` | `Requests.jsx` |
+| Chat | `/chat/:id` | `screenshots/chat/messages.png` | `Chat.jsx` |
+| Premium plans | `/premium` | `screenshots/premium/plans.png` | `Premium.jsx` |
 
-```text
-screenshots/
-├── auth/login.png
-├── auth/signup.png
-├── feed/feed.png
-├── profile/edit-profile.png
-├── chat/messages.png
-├── requests/incoming-requests.png
-└── premium/plans.png
-```
+The screenshot folders currently contain only `.gitkeep` placeholders, so page images are not checked in yet. Add each capture at the path listed above to populate this gallery.
 
 ## Prerequisites
 
