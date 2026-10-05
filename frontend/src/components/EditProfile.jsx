@@ -64,11 +64,11 @@ const EditProfile = ({ user }) => {
   }, [user]);
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.18),_transparent_30%),linear-gradient(135deg,_#020817_0%,_#0f172a_40%,_#111827_100%)] px-4 py-10 text-slate-100">
+    <main className="min-h-[calc(100vh-4rem)] bg-[radial-gradient(ellipse_at_top,_rgba(34,211,238,0.10),_transparent_42%)] px-4 py-10 text-slate-100 sm:py-14">
       {popupMessage && (
         <div
           role="alert"
-          className={`fixed left-1/2 top-6 z-50 flex -translate-x-1/2 items-center gap-4 rounded-xl border px-5 py-4 text-white shadow-xl ${
+          className={`fixed left-1/2 top-20 z-50 flex w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-sm shadow-2xl backdrop-blur-xl ${
             isError
               ? "border-red-400/40 bg-red-500/10 text-red-100"
               : "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
@@ -88,15 +88,15 @@ const EditProfile = ({ user }) => {
           </button>
         </div>
       )}
-      <div className="mx-auto max-w-2xl rounded-[28px] border border-white/10 bg-slate-950/60 p-6 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl sm:p-8">
+      <div className="mx-auto max-w-2xl rounded-[2rem] border border-white/10 bg-slate-900/75 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-9">
         <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-5">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-cyan-300/80">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">
               Profile
             </p>
             <h2 className="mt-2 text-2xl font-bold text-white">Edit profile</h2>
           </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-indigo-500 text-lg font-bold text-slate-950 shadow-lg shadow-cyan-500/20">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300 to-indigo-400 text-sm font-black text-slate-950 shadow-lg shadow-cyan-500/20">
             EP
           </div>
         </div>
@@ -120,7 +120,7 @@ const EditProfile = ({ user }) => {
                 type="text"
                 id="firstName"
                 value={firstName}
-                className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                 placeholder="John Doe"
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -137,7 +137,7 @@ const EditProfile = ({ user }) => {
                 type="text"
                 id="lastName"
                 value={lastName}
-                className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                 placeholder="Doe"
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -155,7 +155,7 @@ const EditProfile = ({ user }) => {
               type="tel"
               id="phoneNumber"
               value={phoneNumber}
-              className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+              className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
               placeholder="+1 234 567 890"
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -171,7 +171,7 @@ const EditProfile = ({ user }) => {
             <select
               id="gender"
               value={gender}
-              className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+              className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
               onChange={(e) => setGender(e.target.value)}
             >
               <option value="">Select gender</option>
@@ -192,7 +192,7 @@ const EditProfile = ({ user }) => {
               id="about"
               value={about}
               rows="4"
-              className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+              className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
               placeholder="Tell us about yourself"
               onChange={(e) => setAbout(e.target.value)}
             />
@@ -209,7 +209,7 @@ const EditProfile = ({ user }) => {
               type="text"
               id="skills"
               value={skills}
-              className="w-full rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-white shadow-inner shadow-slate-950/40 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+              className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white shadow-inner shadow-black/20 outline-none transition duration-200 placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
               placeholder="React, Node, JavaScript"
               onChange={(e) => setSkills(e.target.value)}
             />
@@ -218,14 +218,14 @@ const EditProfile = ({ user }) => {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 px-4 py-3.5 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition duration-200 hover:-translate-y-0.5 hover:shadow-cyan-500/40 active:translate-y-0"
+              className="w-full rounded-xl bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-400 px-4 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition duration-200 hover:-translate-y-0.5 hover:shadow-cyan-500/40 active:translate-y-0"
             >
               Save changes
             </button>
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

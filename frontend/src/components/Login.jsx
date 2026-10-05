@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/__redux_store__/userSlice";
 import { BACKEND_API } from "../utils/constants";
+import BrandLogo from "./BrandLogo";
 
 const getErrorMessage = (error, fallback) => {
   const message =
@@ -131,13 +132,19 @@ const Login = () => {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12">
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] shadow-2xl shadow-black/40 backdrop-blur-xl">
+    <main className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_top,_rgba(34,211,238,0.12),_transparent_45%)] px-4 py-12">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.035]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[27rem] w-[27rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04]" />
+      <div className="relative w-full max-w-md overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/80 shadow-2xl shadow-black/40 backdrop-blur-2xl">
         <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-indigo-500/20 blur-3xl" />
         <div className="absolute -bottom-24 -left-20 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="relative p-8 sm:p-10">
+        <div className="relative p-7 sm:p-10">
           <div className="mb-8 text-center">
-            <h2 className="mt-3 text-4xl font-bold tracking-tight text-white">
+            <div className="mb-5 flex justify-center">
+              <BrandLogo className="size-12" markOnly />
+            </div>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Welcome to MeetNewDevs</p>
+            <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-white">
               {isLogin ? "Log in" : "Create account"}
             </h2>
             <p className="mt-3 text-sm text-slate-400">
@@ -159,7 +166,7 @@ const Login = () => {
               <input
                 type="email"
                 id="email"
-                className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -177,7 +184,7 @@ const Login = () => {
                   </label>
                   <input
                     id="firstName"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -191,7 +198,7 @@ const Login = () => {
                   </label>
                   <input
                     id="lastName"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -206,7 +213,7 @@ const Login = () => {
                   <input
                     id="phoneNumber"
                     type="tel"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
@@ -220,7 +227,7 @@ const Login = () => {
                   </label>
                   <input
                     id="gender"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                   />
@@ -234,7 +241,7 @@ const Login = () => {
                   </label>
                   <textarea
                     id="about"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={about}
                     onChange={(e) => setAbout(e.target.value)}
                   />
@@ -249,7 +256,7 @@ const Login = () => {
                   <input
                     id="skills"
                     placeholder="AWS, JavaScript, Express"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={skills}
                     onChange={(e) => setSkills(e.target.value)}
                   />
@@ -264,7 +271,7 @@ const Login = () => {
                   <input
                     id="profilePicture"
                     type="url"
-                    className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                     value={profilePicture}
                     onChange={(e) => setProfilePicture(e.target.value)}
                   />
@@ -282,7 +289,7 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
-                className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10"
+                className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-cyan-300 focus:ring-4 focus:ring-cyan-300/10"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -301,13 +308,13 @@ const Login = () => {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-4 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:shadow-cyan-500/40 active:translate-y-0"
+                className="w-full rounded-xl bg-gradient-to-r from-cyan-300 to-indigo-400 px-4 py-3.5 text-base font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:shadow-cyan-500/40 active:translate-y-0"
               >
                 Log in
               </button>
               <div className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-400">
                 <span>
-                  {isLogin ? "New to DevTinder?" : "Already have an account?"}
+                  {isLogin ? "New to MeetNewDevs?" : "Already have an account?"}
                 </span>
                 <button
                   type="button"
@@ -324,7 +331,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

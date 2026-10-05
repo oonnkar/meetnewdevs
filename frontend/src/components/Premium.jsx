@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { BACKEND_API } from "../utils/constants";
 
@@ -16,7 +15,7 @@ const Premium = () => {
         key: "rzp_test_Ti72k8F6kE7liG", // Replace with your Razorpay key_id
         amount: amount, // Amount is in currency subunits.
         currency: currency,
-        name: "Meet new devs",
+        name: "MeetNewDevs",
         description: "Connect with other developers",
         order_id: orderId, // This is the order_id created in the backend
         prefill: {
@@ -64,13 +63,13 @@ const Premium = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-5 py-16 text-white sm:px-8">
+    <main className="min-h-[calc(100vh-4rem)] bg-[radial-gradient(ellipse_at_top,_rgba(251,191,36,0.09),_transparent_40%)] px-5 py-14 text-white sm:px-8 sm:py-20">
       <section className="mx-auto max-w-5xl">
         <header className="mx-auto mb-12 max-w-2xl text-center">
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-rose-400">
-            DevTinder Premium
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-amber-300">
+            MeetNewDevs Premium
           </p>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <h1 className="bg-gradient-to-r from-white via-amber-100 to-amber-300 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
             More chances to connect.
           </h1>
           <p className="mt-4 leading-7 text-slate-400">
@@ -83,14 +82,14 @@ const Premium = () => {
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative rounded-3xl border p-7 shadow-xl sm:p-9 ${plan.popular ? "border-amber-400/70 bg-gradient-to-br from-amber-400/10 to-slate-900 shadow-amber-950/20" : "border-slate-700 bg-slate-900"}`}
+              className={`relative overflow-hidden rounded-[2rem] border p-7 shadow-2xl transition duration-300 hover:-translate-y-1 sm:p-9 ${plan.popular ? "border-amber-300/40 bg-gradient-to-br from-amber-300/[0.09] via-slate-900 to-slate-900 shadow-amber-950/20 hover:border-amber-200/60" : "border-white/10 bg-slate-900/80 hover:border-white/20"}`}
             >
               {plan.popular && (
-                <span className="absolute right-6 top-6 rounded-full bg-amber-300/15 px-3 py-1 text-xs font-bold text-amber-200">
+                <span className="absolute right-6 top-6 rounded-full border border-amber-200/15 bg-amber-300/10 px-3 py-1 text-[10px] font-extrabold tracking-wider text-amber-200">
                   MOST POPULAR
                 </span>
               )}
-              <h2 className="text-2xl font-bold">{plan.name}</h2>
+              <h2 className="text-2xl font-bold tracking-tight">{plan.name}</h2>
               <p className="mt-2 text-sm text-slate-400">{plan.description}</p>
               <p className="mt-7">
                 <span className="text-5xl font-extrabold tracking-tight">
@@ -102,11 +101,11 @@ const Premium = () => {
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-center gap-3 text-sm text-slate-200"
+                    className="flex items-center gap-3 text-sm text-slate-300"
                   >
                     <span
                       aria-hidden="true"
-                      className="font-bold text-emerald-400"
+                      className="flex size-5 items-center justify-center rounded-full bg-emerald-400/10 text-xs font-bold text-emerald-300"
                     >
                       ✓
                     </span>
@@ -119,7 +118,7 @@ const Premium = () => {
                 onClick={() => {
                   handleClick(plan.type);
                 }}
-                className={`mt-9 w-full rounded-xl px-5 py-3.5 font-semibold transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${plan.popular ? "bg-amber-300 text-slate-950 hover:bg-amber-200 focus:ring-amber-300" : "bg-white text-slate-950 hover:bg-slate-200 focus:ring-white"}`}
+                className={`mt-9 w-full rounded-xl px-5 py-3.5 font-bold transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${plan.popular ? "bg-gradient-to-r from-amber-200 to-amber-400 text-slate-950 shadow-lg shadow-amber-950/20 hover:from-amber-100 hover:to-amber-300 focus:ring-amber-300" : "border border-white/10 bg-white/[0.08] text-white hover:bg-white/[0.13] focus:ring-white"}`}
               >
                 Choose {plan.name.replace(" Membership", "")}
               </button>

@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../utils/__redux_store__/userSlice";
@@ -6,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_API } from "../utils/constants";
 import { removeAllConnections } from "../utils/__redux_store__/connectionsSlice";
 import { removeFeed } from "../utils/__redux_store__/feedSlice";
+import BrandLogo from "./BrandLogo";
 const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -28,9 +28,15 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div className="sticky top-0 z-40 border-b border-white/[0.08] bg-slate-950/85 px-2 text-slate-100 shadow-lg shadow-black/10 backdrop-blur-xl sm:px-5">
+      <div className="navbar mx-auto min-h-16 max-w-7xl">
       <div className="flex-1">
-      <Link to="/feed" className="btn btn-ghost text-xl">DevTinder🫨
+      <Link
+        to="/feed"
+        aria-label="MeetNewDevs home"
+        className="btn btn-ghost rounded-xl px-2 hover:bg-white/[0.06]"
+      >
+        <BrandLogo />
       </Link>
       </div>
       <div className="flex gap-2">
@@ -38,7 +44,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end mx-5">
             <button
               tabIndex={0}
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle avatar ring-2 ring-white/10 transition hover:ring-cyan-300/50"
               aria-label="Open user menu"
             >
               <div className="w-10 rounded-full">
@@ -47,7 +53,7 @@ const Navbar = () => {
             </button>
             <ul
               tabIndex={0}
-              className="menu dropdown-content z-10 mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg"
+              className="menu dropdown-content z-50 mt-3 w-56 rounded-2xl border border-white/10 bg-slate-900 p-2 text-slate-200 shadow-2xl shadow-black/40"
             >
               <li>
                 <Link to="/profile" className="rounded-lg">
@@ -82,6 +88,7 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+      </div>
       </div>
     </div>
   );
